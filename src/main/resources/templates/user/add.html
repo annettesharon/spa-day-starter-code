@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <title>Add User</title>
     <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+    <title>Sign Up</title>
 </head>
 <body>
 
 <form method="post" th:action="@{/user}">
 
     <div>
-        <label>Name:</label>
-        <input type="text" name="userName" th:value = "${user.userName}">
+        <label>Username:</label>
+        <input type="text" name="userName" th:value = "${userName}">
+        <span th:errors = "${user.username}"></span>
     </div>
 
     <div>
         <label>Email</label>
-        <input type="email" name="email" th:value = "${user.email}">
+        <input name="email" th:value = "${email}">
+        <span th:errors = "${user.email}"></span>
     </div>
 
     <div>
@@ -27,11 +30,13 @@
     <div>
         <label>Confirm Password:</label>
         <input type="password" name="verify">
+        <span th:errors = "${user.password}"></span>
     </div>
-
+    <div th:text="${error}"></div>
+<!--    <p th:if="${error}" th:text="${errors}">Password Doesn't match</p>-->
     <div>
         <input type="submit" value="Login">
-        <p th:if="${error}" th:text="${errors}">Password Doesn't match</p>
+
     </div>
 </form>
 
